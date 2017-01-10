@@ -1,0 +1,468 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jmeterTestPlan version="1.2" properties="3.1" jmeter="3.1 r1770033">
+  <hashTree>
+    <TestPlan guiclass="TestPlanGui" testclass="TestPlan" testname="Test Plan" enabled="true">
+      <stringProp name="TestPlan.comments"></stringProp>
+      <boolProp name="TestPlan.functional_mode">false</boolProp>
+      <boolProp name="TestPlan.serialize_threadgroups">false</boolProp>
+      <elementProp name="TestPlan.user_defined_variables" elementType="Arguments" guiclass="ArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
+        <collectionProp name="Arguments.arguments"/>
+      </elementProp>
+      <stringProp name="TestPlan.user_define_classpath"></stringProp>
+    </TestPlan>
+    <hashTree>
+      <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
+        <collectionProp name="HeaderManager.headers">
+          <elementProp name="" elementType="Header">
+            <stringProp name="Header.name">x-auth-token</stringProp>
+            <stringProp name="Header.value">AACPREH-eHi4Aetx_wDur8iEkGGqY8ep42Cr60gl9D0Tu-FoTjQbr9DkgN6tCbFPd1NkuAP-7QjGu9ZzXpDtyf2gOQ_rRPvVqt3o3LwBN_hU1U2EaJPeA7c0</stringProp>
+          </elementProp>
+          <elementProp name="" elementType="Header">
+            <stringProp name="Header.name">Content-type</stringProp>
+            <stringProp name="Header.value">application/json</stringProp>
+          </elementProp>
+          <elementProp name="" elementType="Header">
+            <stringProp name="Header.name">accept</stringProp>
+            <stringProp name="Header.value">application/json</stringProp>
+          </elementProp>
+        </collectionProp>
+      </HeaderManager>
+      <hashTree/>
+      <ConstantTimer guiclass="ConstantTimerGui" testclass="ConstantTimer" testname="Constant Timer" enabled="true">
+        <stringProp name="ConstantTimer.delay">1000</stringProp>
+      </ConstantTimer>
+      <hashTree/>
+      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="Thread Group" enabled="true">
+        <stringProp name="ThreadGroup.on_sample_error">continue</stringProp>
+        <elementProp name="ThreadGroup.main_controller" elementType="LoopController" guiclass="LoopControlPanel" testclass="LoopController" testname="Loop Controller" enabled="true">
+          <boolProp name="LoopController.continue_forever">false</boolProp>
+          <stringProp name="LoopController.loops">1</stringProp>
+        </elementProp>
+        <stringProp name="ThreadGroup.num_threads">1</stringProp>
+        <stringProp name="ThreadGroup.ramp_time">1</stringProp>
+        <longProp name="ThreadGroup.start_time">1481053295000</longProp>
+        <longProp name="ThreadGroup.end_time">1481053295000</longProp>
+        <boolProp name="ThreadGroup.scheduler">false</boolProp>
+        <stringProp name="ThreadGroup.duration"></stringProp>
+        <stringProp name="ThreadGroup.delay"></stringProp>
+      </ThreadGroup>
+      <hashTree>
+        <TransactionController guiclass="TransactionControllerGui" testclass="TransactionController" testname="Transaction Controller Contacts" enabled="false">
+          <boolProp name="TransactionController.includeTimers">false</boolProp>
+          <boolProp name="TransactionController.parent">false</boolProp>
+        </TransactionController>
+        <hashTree>
+          <CSVDataSet guiclass="TestBeanGUI" testclass="CSVDataSet" testname="CSV Data Set Config" enabled="true">
+            <stringProp name="filename">PostContacts.csv</stringProp>
+            <stringProp name="fileEncoding"></stringProp>
+            <stringProp name="variableNames">LastN,tel,Country,State,Partner,Title,mail,Name,Suf,mailOut,Company,FirstN,Sal</stringProp>
+            <stringProp name="delimiter">,</stringProp>
+            <boolProp name="quotedData">false</boolProp>
+            <boolProp name="recycle">true</boolProp>
+            <boolProp name="stopThread">false</boolProp>
+            <stringProp name="shareMode">shareMode.group</stringProp>
+          </CSVDataSet>
+          <hashTree/>
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="HTTP Contacs" enabled="true">
+            <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+            <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+              <collectionProp name="Arguments.arguments">
+                <elementProp name="" elementType="HTTPArgument">
+                  <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                  <stringProp name="Argument.value">&#xd;
+{&#xd;
+  &quot;contacts&quot;: {&#xd;
+    &quot;lastName&quot;: &quot;${LastN}&quot;,&#xd;
+    &quot;phone&quot;: &quot;${tel}&quot;,&#xd;
+    &quot;mailingCountry&quot;: &quot;${Country}&quot;,&#xd;
+    &quot;mailingState&quot;: &quot;${State}&quot;,&#xd;
+    &quot;isPartner&quot;: &quot;${Partner}&quot;,&#xd;
+    &quot;title&quot;: &quot;${Title}&quot;,&#xd;
+    &quot;email&quot;: &quot;${mail}&quot;,&#xd;
+    &quot;name&quot;: &quot;${Name}&quot;,&#xd;
+    &quot;suffix&quot;: &quot;${Suf}&quot;,&#xd;
+    &quot;emailOptOut&quot;: &quot;${mailOut}&quot;,&#xd;
+    &quot;companyId&quot;: &quot;${Company}&quot;,&#xd;
+    &quot;firstName&quot;: &quot;${FirstN}&quot;,&#xd;
+    &quot;salutation&quot;: &quot;${Sal}&quot;&#xd;
+  }&#xd;
+}</stringProp>
+                  <stringProp name="Argument.metadata">=</stringProp>
+                </elementProp>
+              </collectionProp>
+            </elementProp>
+            <stringProp name="HTTPSampler.domain"></stringProp>
+            <stringProp name="HTTPSampler.port"></stringProp>
+            <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+            <stringProp name="HTTPSampler.response_timeout"></stringProp>
+            <stringProp name="HTTPSampler.protocol"></stringProp>
+            <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+            <stringProp name="HTTPSampler.path">https://dfmw-service.orapi.rackspace.com/SFDC/v1/contacts</stringProp>
+            <stringProp name="HTTPSampler.method">POST</stringProp>
+            <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+            <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+            <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+            <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+            <boolProp name="HTTPSampler.monitor">false</boolProp>
+            <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+          </HTTPSamplerProxy>
+          <hashTree>
+            <XPathExtractor guiclass="XPathExtractorGui" testclass="XPathExtractor" testname="XPath Extractor" enabled="false">
+              <stringProp name="XPathExtractor.default"></stringProp>
+              <stringProp name="XPathExtractor.refname">idContact</stringProp>
+              <stringProp name="XPathExtractor.xpathQuery">Response/url</stringProp>
+              <boolProp name="XPathExtractor.validate">false</boolProp>
+              <boolProp name="XPathExtractor.tolerant">false</boolProp>
+              <boolProp name="XPathExtractor.namespace">false</boolProp>
+            </XPathExtractor>
+            <hashTree/>
+          </hashTree>
+        </hashTree>
+        <TransactionController guiclass="TransactionControllerGui" testclass="TransactionController" testname="Transaction Controller AccountContactRoles" enabled="true">
+          <boolProp name="TransactionController.includeTimers">false</boolProp>
+          <boolProp name="TransactionController.parent">false</boolProp>
+        </TransactionController>
+        <hashTree>
+          <CSVDataSet guiclass="TestBeanGUI" testclass="CSVDataSet" testname="CSV Data Set Config" enabled="true">
+            <stringProp name="filename">PostAccountContactRoles.csv</stringProp>
+            <stringProp name="fileEncoding"></stringProp>
+            <stringProp name="variableNames">Account,Contact,Role</stringProp>
+            <stringProp name="delimiter">,</stringProp>
+            <boolProp name="quotedData">false</boolProp>
+            <boolProp name="recycle">true</boolProp>
+            <boolProp name="stopThread">false</boolProp>
+            <stringProp name="shareMode">shareMode.group</stringProp>
+          </CSVDataSet>
+          <hashTree/>
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="HTTP AccountContactRoles" enabled="true">
+            <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+            <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+              <collectionProp name="Arguments.arguments">
+                <elementProp name="" elementType="HTTPArgument">
+                  <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                  <stringProp name="Argument.value">{&#xd;
+  &quot;accountContactRoles&quot;:&#xd;
+    {&#xd;
+      &quot;accountId&quot;: &quot;${Account}&quot;,&#xd;
+      &quot;contactId&quot;: &quot;${Contact}&quot;,&#xd;
+      &quot;role&quot;: &quot;${Role}&quot;&#xd;
+    }&#xd;
+   &#xd;
+}</stringProp>
+                  <stringProp name="Argument.metadata">=</stringProp>
+                </elementProp>
+              </collectionProp>
+            </elementProp>
+            <stringProp name="HTTPSampler.domain"></stringProp>
+            <stringProp name="HTTPSampler.port"></stringProp>
+            <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+            <stringProp name="HTTPSampler.response_timeout"></stringProp>
+            <stringProp name="HTTPSampler.protocol"></stringProp>
+            <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+            <stringProp name="HTTPSampler.path">https://dfmw-service.orapi.rackspace.com/SFDC/v1/accountContactRoles</stringProp>
+            <stringProp name="HTTPSampler.method">POST</stringProp>
+            <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+            <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+            <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+            <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+            <boolProp name="HTTPSampler.monitor">false</boolProp>
+            <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+          </HTTPSamplerProxy>
+          <hashTree/>
+        </hashTree>
+        <TransactionController guiclass="TransactionControllerGui" testclass="TransactionController" testname="Transaction Controller Opportunity" enabled="false">
+          <boolProp name="TransactionController.includeTimers">false</boolProp>
+          <boolProp name="TransactionController.parent">false</boolProp>
+        </TransactionController>
+        <hashTree>
+          <CSVDataSet guiclass="TestBeanGUI" testclass="CSVDataSet" testname="CSV Data Set Config" enabled="true">
+            <stringProp name="filename">/Users/juan2996/Documents/PostOpportunity.csv</stringProp>
+            <stringProp name="fileEncoding"></stringProp>
+            <stringProp name="variableNames">account,uFee,ticket,sLevel,cCheck,type,kBError,amount,pContacId,tType,cType,cVerified,pProject,fDays,mFee,cat,sUnit,eCReceived,sName,pArea,sFeeMRR,name,probability,hFee,cLength,sFee,cCode,cSetupFee,cDate,exFee,vmFee,contReceived,sSegment,oSSOname,company,invContract</stringProp>
+            <stringProp name="delimiter">,</stringProp>
+            <boolProp name="quotedData">false</boolProp>
+            <boolProp name="recycle">true</boolProp>
+            <boolProp name="stopThread">false</boolProp>
+            <stringProp name="shareMode">shareMode.group</stringProp>
+          </CSVDataSet>
+          <hashTree/>
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="HTTP Opportunity" enabled="true">
+            <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+            <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+              <collectionProp name="Arguments.arguments">
+                <elementProp name="" elementType="HTTPArgument">
+                  <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                  <stringProp name="Argument.value">{&#xd;
+  &quot;opportunities&quot;: {&#xd;
+      &quot;accountId&quot;:&quot;${account}&quot;,&#xd;
+    &quot;unasFee&quot;: &quot;${uFee}&quot;,&#xd;
+    &quot;ticketNumber&quot;: &quot;${ticket}&quot;,&#xd;
+    &quot;serviceLevel&quot;: &quot;${sLevel}&quot;,&#xd;
+    &quot;creditCheck&quot;: &quot;${cCheck}&quot;,&#xd;
+    &quot;type&quot;: &quot;${type}&quot;,&#xd;
+    &quot;kickbackError&quot;: &quot;${kBError}&quot;,&#xd;
+    &quot;amount&quot;: &quot;${amount}&quot;,&#xd;
+    &quot;primaryContactId&quot;: &quot;${pContacId}&quot;,&#xd;
+    &quot;ticketType&quot;: &quot;${tType}&quot;,&#xd;
+    &quot;contractType&quot;: &quot;${cType}&quot;,&#xd;
+    &quot;cvpVerified&quot;: ${cVerified},&#xd;
+    &quot;psProject&quot;: &quot;${pProject}&quot;,&#xd;
+    &quot;freeDays&quot;: &quot;${fDays}&quot;,&#xd;
+    &quot;migrationFee&quot;: &quot;${mFee}&quot;,&#xd;
+    &quot;category&quot;: &quot;${cat}&quot;,&#xd;
+    &quot;supportUnit&quot;: &quot;${sUnit}&quot;,&#xd;
+    &quot;eConnectReceived&quot;: ${eCReceived},&#xd;
+    &quot;stageName&quot;: &quot;${sName}&quot;,&#xd;
+    &quot;practiceArea&quot;: &quot;${pArea}&quot;,&#xd;
+    &quot;serviceFeeMRR&quot;: &quot;${sFeeMRR}&quot;,&#xd;
+    &quot;name&quot;: &quot;${name}&quot;,&#xd;
+    &quot;probability&quot;: ${probability},&#xd;
+    &quot;hostingFee&quot;: &quot;${hFee}&quot;,&#xd;
+    &quot;contractLength&quot;: &quot;${cLength}&quot;,&#xd;
+    &quot;serviceFee&quot;: &quot;${sFee}&quot;,&#xd;
+    &quot;currencyCode&quot;: &quot;${cCode}&quot;,&#xd;
+    &quot;cloudSetupFee&quot;: &quot;${cSetupFee}&quot;,&#xd;
+    &quot;closeDate&quot;: &quot;${cDate}&quot;,&#xd;
+    &quot;exchangeFee&quot;: &quot;${exFee}&quot;,&#xd;
+    &quot;vmFee&quot;: ${vmFee},&#xd;
+    &quot;contractReceived&quot;: ${contReceived},&#xd;
+    &quot;supportSegment&quot;: &quot;${sSegment}&quot;,&#xd;
+    &quot;ownerSSOName&quot;: &quot;${oSSOname}&quot;,&#xd;
+    &quot;companyId&quot;: &quot;${company}&quot;,&#xd;
+    &quot;invalidContract&quot;: ${invContract}&#xd;
+  }&#xd;
+}</stringProp>
+                  <stringProp name="Argument.metadata">=</stringProp>
+                </elementProp>
+              </collectionProp>
+            </elementProp>
+            <stringProp name="HTTPSampler.domain"></stringProp>
+            <stringProp name="HTTPSampler.port"></stringProp>
+            <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+            <stringProp name="HTTPSampler.response_timeout"></stringProp>
+            <stringProp name="HTTPSampler.protocol"></stringProp>
+            <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+            <stringProp name="HTTPSampler.path">https://dfmw-service.orapi.rackspace.com/SFDC/v1/opportunities</stringProp>
+            <stringProp name="HTTPSampler.method">POST</stringProp>
+            <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+            <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+            <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+            <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+            <boolProp name="HTTPSampler.monitor">false</boolProp>
+            <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+          </HTTPSamplerProxy>
+          <hashTree/>
+        </hashTree>
+        <TransactionController guiclass="TransactionControllerGui" testclass="TransactionController" testname="Transaction Controller QuoteLines" enabled="true">
+          <boolProp name="TransactionController.includeTimers">false</boolProp>
+          <boolProp name="TransactionController.parent">false</boolProp>
+        </TransactionController>
+        <hashTree>
+          <CSVDataSet guiclass="TestBeanGUI" testclass="CSVDataSet" testname="CSV Data Set Config" enabled="true">
+            <stringProp name="filename">PostQuoteLines.csv</stringProp>
+            <stringProp name="fileEncoding"></stringProp>
+            <stringProp name="variableNames">isMigrated,offlineDate,failedDescription,mrr,platformName,name,statusNumber,dueDate,isReconciled,isFocusAreaOverridden,opportunityId,currencyCode,productCode,onlineDate,workloadPlatform,deviceStatus,oldMRR,dataCenterName,newMRR,newUtilityMRR,sfStashId,setupFee,focusArea,isDebook,deviceNumber</stringProp>
+            <stringProp name="delimiter">,</stringProp>
+            <boolProp name="quotedData">false</boolProp>
+            <boolProp name="recycle">true</boolProp>
+            <boolProp name="stopThread">false</boolProp>
+            <stringProp name="shareMode">shareMode.group</stringProp>
+          </CSVDataSet>
+          <hashTree/>
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="HTTP QuoteLines" enabled="true">
+            <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+            <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+              <collectionProp name="Arguments.arguments">
+                <elementProp name="" elementType="HTTPArgument">
+                  <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                  <stringProp name="Argument.value">{&#xd;
+  &quot;quoteLines&quot;: {&#xd;
+    &quot;isMigrated&quot;: ${isMigrated},&#xd;
+    &quot;offlineDate&quot;: &quot;${offlineDate}&quot;,&#xd;
+    &quot;failedDescription&quot;: &quot;${failedDescription}&quot;,&#xd;
+    &quot;mrr&quot;: ${mrr},&#xd;
+    &quot;platformName&quot;: &quot;${platformName}&quot;,&#xd;
+    &quot;name&quot;: &quot;${name}&quot;,&#xd;
+    &quot;statusNumber&quot;: ${statusNumber},&#xd;
+    &quot;dueDate&quot;: &quot;${dueDate}&quot;,&#xd;
+    &quot;isReconciled&quot;: ${isReconciled},&#xd;
+    &quot;isFocusAreaOverridden&quot;: ${isFocusAreaOverridden},&#xd;
+    &quot;opportunityId&quot;: &quot;${opportunityId}&quot;,&#xd;
+    &quot;currencyCode&quot;: &quot;${currencyCode}&quot;,&#xd;
+    &quot;productCode&quot;: &quot;${productCode}&quot;,&#xd;
+    &quot;onlineDate&quot;: &quot;${onlineDate}&quot;,&#xd;
+    &quot;workloadPlatform&quot;: &quot;${workloadPlatform}&quot;,&#xd;
+    &quot;deviceStatus&quot;: &quot;${deviceStatus}&quot;,&#xd;
+    &quot;oldMRR&quot;: ${oldMRR},&#xd;
+    &quot;dataCenterName&quot;: &quot;${dataCenterName}&quot;,&#xd;
+    &quot;newMRR&quot;: ${newMRR},&#xd;
+    &quot;newUtilityMRR&quot;: ${newUtilityMRR},&#xd;
+    &quot;sfStashId&quot;: ${sfStashId},&#xd;
+    &quot;setupFee&quot;: ${setupFee},&#xd;
+    &quot;focusArea&quot;: &quot;${focusArea}&quot;,&#xd;
+    &quot;isDebook&quot;: ${isDebook},&#xd;
+    &quot;deviceNumber&quot;: ${deviceNumber}&#xd;
+  }&#xd;
+ &#xd;
+}&#xd;
+</stringProp>
+                  <stringProp name="Argument.metadata">=</stringProp>
+                </elementProp>
+              </collectionProp>
+            </elementProp>
+            <stringProp name="HTTPSampler.domain"></stringProp>
+            <stringProp name="HTTPSampler.port"></stringProp>
+            <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+            <stringProp name="HTTPSampler.response_timeout"></stringProp>
+            <stringProp name="HTTPSampler.protocol"></stringProp>
+            <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+            <stringProp name="HTTPSampler.path">https://dfmw-service.orapi.rackspace.com/SFDC/v1/quoteLines</stringProp>
+            <stringProp name="HTTPSampler.method">POST</stringProp>
+            <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+            <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+            <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+            <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+            <boolProp name="HTTPSampler.monitor">false</boolProp>
+            <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+          </HTTPSamplerProxy>
+          <hashTree/>
+        </hashTree>
+        <TransactionController guiclass="TransactionControllerGui" testclass="TransactionController" testname="Transaction Controller Quote" enabled="true">
+          <boolProp name="TransactionController.includeTimers">false</boolProp>
+          <boolProp name="TransactionController.parent">false</boolProp>
+        </TransactionController>
+        <hashTree>
+          <CSVDataSet guiclass="TestBeanGUI" testclass="CSVDataSet" testname="CSV Data Set Config" enabled="true">
+            <stringProp name="filename">PostQuote.csv</stringProp>
+            <stringProp name="fileEncoding"></stringProp>
+            <stringProp name="variableNames">opp,isPrima,cCode,sLevel,dDeployment,isSilverB,mrr,isLocked,uFee,cTerm,isStrategicD,sFee,source,iPahsedDeploy,cQuoteNumber,name,oneTimeF,isPricing</stringProp>
+            <stringProp name="delimiter">,</stringProp>
+            <boolProp name="quotedData">false</boolProp>
+            <boolProp name="recycle">true</boolProp>
+            <boolProp name="stopThread">false</boolProp>
+            <stringProp name="shareMode">shareMode.group</stringProp>
+          </CSVDataSet>
+          <hashTree/>
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="HTTP Quote" enabled="true">
+            <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+            <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+              <collectionProp name="Arguments.arguments">
+                <elementProp name="" elementType="HTTPArgument">
+                  <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                  <stringProp name="Argument.value">{&#xd;
+  &quot;quotes&quot;: &#xd;
+    {&#xd;
+      &quot;opportunityId&quot;: &quot;${opp}&quot;,&#xd;
+      &quot;isPrimary&quot;: ${isPrima},&#xd;
+      &quot;currencyCode&quot;: &quot;${cCode}&quot;,&#xd;
+      &quot;serviceLevel&quot;: &quot;${sLevel}&quot;,&#xd;
+      &quot;delayedDeployment&quot;: &quot;${dDeployment}&quot;,&#xd;
+      &quot;isSilverBullet&quot;: ${isSilverB},&#xd;
+      &quot;mrr&quot;: ${mrr},&#xd;
+      &quot;isLocked&quot;: ${isLocked},&#xd;
+      &quot;utilityFee&quot;: ${uFee},&#xd;
+      &quot;contractTerm&quot;: &quot;${cTerm}&quot;,&#xd;
+      &quot;isStrategicDeal&quot;: ${isStrategicD},&#xd;
+      &quot;setupFee&quot;: ${sFee},&#xd;
+      &quot;source&quot;: &quot;${source}&quot;,&#xd;
+      &quot;isPhasedDeployment&quot;: ${iPahsedDeploy},&#xd;
+      &quot;cpqQuoteNumber&quot;: ${cQuoteNumber},&#xd;
+      &quot;name&quot;: &quot;${name}&quot;,&#xd;
+      &quot;onetimeFee&quot;: ${oneTimeF},&#xd;
+      &quot;isPricing&quot;: ${isPricing}&#xd;
+    }&#xd;
+  &#xd;
+}</stringProp>
+                  <stringProp name="Argument.metadata">=</stringProp>
+                </elementProp>
+              </collectionProp>
+            </elementProp>
+            <stringProp name="HTTPSampler.domain"></stringProp>
+            <stringProp name="HTTPSampler.port"></stringProp>
+            <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+            <stringProp name="HTTPSampler.response_timeout"></stringProp>
+            <stringProp name="HTTPSampler.protocol"></stringProp>
+            <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+            <stringProp name="HTTPSampler.path">https://dfmw-service.orapi.rackspace.com/SFDC/v1/quotes</stringProp>
+            <stringProp name="HTTPSampler.method">POST</stringProp>
+            <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+            <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+            <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+            <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+            <boolProp name="HTTPSampler.monitor">false</boolProp>
+            <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+          </HTTPSamplerProxy>
+          <hashTree/>
+        </hashTree>
+      </hashTree>
+      <ResultCollector guiclass="TableVisualizer" testclass="ResultCollector" testname="View Results in Table" enabled="true">
+        <boolProp name="ResultCollector.error_logging">false</boolProp>
+        <objProp>
+          <name>saveConfig</name>
+          <value class="SampleSaveConfiguration">
+            <time>true</time>
+            <latency>true</latency>
+            <timestamp>true</timestamp>
+            <success>true</success>
+            <label>true</label>
+            <code>true</code>
+            <message>true</message>
+            <threadName>true</threadName>
+            <dataType>true</dataType>
+            <encoding>false</encoding>
+            <assertions>true</assertions>
+            <subresults>true</subresults>
+            <responseData>false</responseData>
+            <samplerData>false</samplerData>
+            <xml>false</xml>
+            <fieldNames>true</fieldNames>
+            <responseHeaders>false</responseHeaders>
+            <requestHeaders>false</requestHeaders>
+            <responseDataOnError>false</responseDataOnError>
+            <saveAssertionResultsFailureMessage>true</saveAssertionResultsFailureMessage>
+            <assertionsResultsToSave>0</assertionsResultsToSave>
+            <bytes>true</bytes>
+            <threadCounts>true</threadCounts>
+            <idleTime>true</idleTime>
+          </value>
+        </objProp>
+        <stringProp name="filename"></stringProp>
+      </ResultCollector>
+      <hashTree/>
+      <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="View Results Tree" enabled="true">
+        <boolProp name="ResultCollector.error_logging">false</boolProp>
+        <objProp>
+          <name>saveConfig</name>
+          <value class="SampleSaveConfiguration">
+            <time>true</time>
+            <latency>true</latency>
+            <timestamp>true</timestamp>
+            <success>true</success>
+            <label>true</label>
+            <code>true</code>
+            <message>true</message>
+            <threadName>true</threadName>
+            <dataType>true</dataType>
+            <encoding>false</encoding>
+            <assertions>true</assertions>
+            <subresults>true</subresults>
+            <responseData>false</responseData>
+            <samplerData>false</samplerData>
+            <xml>false</xml>
+            <fieldNames>true</fieldNames>
+            <responseHeaders>false</responseHeaders>
+            <requestHeaders>false</requestHeaders>
+            <responseDataOnError>false</responseDataOnError>
+            <saveAssertionResultsFailureMessage>true</saveAssertionResultsFailureMessage>
+            <assertionsResultsToSave>0</assertionsResultsToSave>
+            <bytes>true</bytes>
+            <threadCounts>true</threadCounts>
+            <idleTime>true</idleTime>
+          </value>
+        </objProp>
+        <stringProp name="filename"></stringProp>
+      </ResultCollector>
+      <hashTree/>
+    </hashTree>
+  </hashTree>
+</jmeterTestPlan>
